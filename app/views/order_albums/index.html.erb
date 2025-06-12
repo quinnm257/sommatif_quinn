@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Order albums" %>
+
+<h1>Order albums</h1>
+
+<div id="order_albums">
+  <% @order_albums.each do |order_album| %>
+    <%= render order_album %>
+    <p>
+      <%= link_to "Show this order album", order_album %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New order album", new_order_album_path %>

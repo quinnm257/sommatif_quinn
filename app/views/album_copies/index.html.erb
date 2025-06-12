@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Album copies" %>
+
+<h1>Album copies</h1>
+
+<div id="album_copies">
+  <% @album_copies.each do |album_copy| %>
+    <%= render album_copy %>
+    <p>
+      <%= link_to "Show this album copy", album_copy %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New album copy", new_album_copy_path %>

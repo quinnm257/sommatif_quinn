@@ -1,0 +1,11 @@
+<% content_for :title, "New order album" %>
+
+<h1>New order album</h1>
+
+<%= render "form", order_album: @order_album %>
+
+<br>
+
+<div>
+  <%= link_to "Back to order albums", order_albums_path %>
+</div>

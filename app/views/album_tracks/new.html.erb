@@ -1,0 +1,11 @@
+<% content_for :title, "New album track" %>
+
+<h1>New album track</h1>
+
+<%= render "form", album_track: @album_track %>
+
+<br>
+
+<div>
+  <%= link_to "Back to album tracks", album_tracks_path %>
+</div>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @album_track %>
+
+<div>
+  <%= link_to "Edit this album track", edit_album_track_path(@album_track) %> |
+  <%= link_to "Back to album tracks", album_tracks_path %>
+
+  <%= button_to "Destroy this album track", @album_track, method: :delete %>
+</div>

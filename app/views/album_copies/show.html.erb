@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @album_copy %>
+
+<div>
+  <%= link_to "Edit this album copy", edit_album_copy_path(@album_copy) %> |
+  <%= link_to "Back to album copies", album_copies_path %>
+
+  <%= button_to "Destroy this album copy", @album_copy, method: :delete %>
+</div>

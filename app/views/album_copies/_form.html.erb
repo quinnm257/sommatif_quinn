@@ -1,0 +1,40 @@
+<%= form_with(model: album_copy) do |form| %>
+  <% if album_copy.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(album_copy.errors.count, "error") %> prohibited this album_copy from being saved:</h2>
+
+      <ul>
+        <% album_copy.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :album_id, style: "display: block" %>
+    <%= form.collection_select :album_id,
+                  @album,
+                  :id,
+                  :title,
+                  prompt: "Select an album" %>  </div>
+
+  <div>
+    <%= form.label :media_type, style: "display: block" %>
+    <%= form.text_field :media_type %>
+  </div>
+
+  <div>
+    <%= form.label :condition, style: "display: block" %>
+    <%= form.text_field :condition %>
+  </div>
+
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

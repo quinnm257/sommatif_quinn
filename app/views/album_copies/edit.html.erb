@@ -1,0 +1,12 @@
+<% content_for :title, "Editing album copy" %>
+
+<h1>Editing album copy</h1>
+
+<%= render "form", album_copy: @album_copy %>
+
+<br>
+
+<div>
+  <%= link_to "Show this album copy", @album_copy %> |
+  <%= link_to "Back to album copies", album_copies_path %>
+</div>
