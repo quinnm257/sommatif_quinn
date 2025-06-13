@@ -27,20 +27,34 @@
     <p class="alert"><%= alert %></p>
   </body>
 
- <% if user_signed_in? %>
-  <h1>Welcome Home, <%= current_user.email %></h1>
-  <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
-<% else %>
-  <%= link_to 'Sign in', new_user_session_path %>
-<% end %>
+  <div class="site-title-bar">
+  <h1>Quinn's Record and Music Store</h1>
+</div>
 
-<h1>Menu</h1>
+  
+  <% if user_signed_in? %>
+    <body>Welcome Home, <%= current_user.email %></body>
+    <header>
+      <nav>
+    <%= link_to 'Sign out', destroy_user_session_path, class: "header", data: { turbo_method: :delete } %>
+  <% else %>
+    <%= link_to 'Sign in', new_user_session_path, class: "header" %>
+  <% end %>
+
+  <% unless controller.controller_name == "home" && action_name == "index" %>
+    
+      
+        <%= link_to "Home", root_path, class: "header" %>
+      <%= link_to "Inventory", album_copies_path, class: "header" %>
+          <%= link_to "Albums", albums_path, class: "header"%>
+          <%= link_to "Artists", artists_path, class: "header" %>
+          <%= link_to "Genres", genres_path, class: "header" %>
+          <%= link_to "Gear", gears_path, class: "header" %>
+      </nav>
+    </header>
+  <% end %>
 
   <body>
-    <%= link_to "Album Copies", album_copies_path, class: page_courant(params[:controller], "album_copies") %>
-    <%= link_to "Albums", albums_path, class: page_courant(params[:controller], "albums") %>
-    <%= link_to "Artists", artists_path, class: page_courant(params[:controller], "artists") %>
-    <%= link_to "Genres", genres_path, class: page_courant(params[:controller], "genres") %>
     <%= yield %>
   </body>
 </html>

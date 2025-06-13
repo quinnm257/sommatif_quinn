@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @gear %>
+
+<div>
+  
+  <%= link_to "Back to gears", gears_path %>
+
+  <% if policy(@gear).update? %>
+    <%= link_to 'Edit', edit_gear_path(@gear) %>
+  <% end %>
+
+  <% if policy(@gear).destroy? %>
+    <%= link_to 'Delete', @gear, method: :delete %>
+  <% end %>
+</div>

@@ -15,16 +15,19 @@ class AlbumsController < ApplicationController
     @album = Album.new
     @artist = Artist.all
     @genre = Genre.all
+    authorize @album
   end
 
   # GET /albums/1/edit
   def edit
     @artist = Artist.all
     @genre = Genre.all
+    authorize @album
   end
 
   # POST /albums or /albums.json
   def create
+    authorize @album
     @album = Album.new(album_params)
 
     respond_to do |format|
@@ -69,7 +72,7 @@ class AlbumsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def album_params
-      params.expect(album: [ :title, :artist_id, :debut_year, :genre_id ])
+      params.expect(album: [ :title, :artist_id, :release_year, :genre_id ])
     end
 
      private

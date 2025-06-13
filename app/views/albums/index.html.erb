@@ -8,7 +8,9 @@
   <% @albums.each do |album| %>
     <%= render album %>
     <p>
-      <%= link_to "Show this album", album %>
+      <%= link_to "Show this album", album, class: "header" %>
+      <%= link_to "See tracks on this album", album_tracks_path(album_id: album.id), class: "header" %>
+
     </p>
   <% end %>
 </div>

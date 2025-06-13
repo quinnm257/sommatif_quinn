@@ -1,0 +1,11 @@
+<% content_for :title, "New gear" %>
+
+<h1>New gear</h1>
+
+<%= render "form", gear: @gear %>
+
+<br>
+
+<div>
+  <%= link_to "Back to gears", gears_path %>
+</div>

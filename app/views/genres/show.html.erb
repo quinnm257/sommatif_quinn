@@ -3,8 +3,15 @@
 <%= render @genre %>
 
 <div>
-  <%= link_to "Edit this genre", edit_genre_path(@genre) %> |
+  
   <%= link_to "Back to genres", genres_path %>
 
-  <%= button_to "Destroy this genre", @genre, method: :delete %>
+  <% if policy(@genre).update? %>
+    <%= link_to 'Edit', edit_genre_path(@genre) %>
+  <% end %>
+
+  <% if policy(@genre).destroy? %>
+    <%= link_to 'Delete', @genre, method: :delete %>
+  <% end %>
+
 </div>

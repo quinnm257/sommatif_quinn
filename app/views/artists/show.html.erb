@@ -3,8 +3,14 @@
 <%= render @artist %>
 
 <div>
-  <%= link_to "Edit this artist", edit_artist_path(@artist) %> |
+  
   <%= link_to "Back to artists", artists_path %>
+  
+  <% if policy(@artist).update? %>
+    <%= link_to 'Edit', edit_artist_path(@artist) %>
+  <% end %>
 
-  <%= button_to "Destroy this artist", @artist, method: :delete %>
+  <% if policy(@artist).destroy? %>
+    <%= link_to 'Delete', @artist, method: :delete %>
+  <% end %>
 </div>

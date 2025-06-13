@@ -13,14 +13,17 @@ class GenresController < ApplicationController
   # GET /genres/new
   def new
     @genre = Genre.new
+    authorize @genre
   end
 
   # GET /genres/1/edit
   def edit
+    authorize @genre
   end
 
   # POST /genres or /genres.json
   def create
+    authorize @genre
     @genre = Genre.new(genre_params)
 
     respond_to do |format|
@@ -36,6 +39,7 @@ class GenresController < ApplicationController
 
   # PATCH/PUT /genres/1 or /genres/1.json
   def update
+    authorize @genre
     respond_to do |format|
       if @genre.update(genre_params)
         format.html { redirect_to @genre, notice: "Genre was successfully updated." }
@@ -49,6 +53,7 @@ class GenresController < ApplicationController
 
   # DELETE /genres/1 or /genres/1.json
   def destroy
+    authorize @genre
     @genre.destroy!
 
     respond_to do |format|

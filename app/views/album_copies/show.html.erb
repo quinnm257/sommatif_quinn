@@ -3,8 +3,14 @@
 <%= render @album_copy %>
 
 <div>
-  <%= link_to "Edit this album copy", edit_album_copy_path(@album_copy) %> |
+  
   <%= link_to "Back to album copies", album_copies_path %>
 
-  <%= button_to "Destroy this album copy", @album_copy, method: :delete %>
+  <% if policy(@album_copy).update? %>
+    <%= link_to 'Edit', edit_album_copy_path(@album_copy) %>
+  <% end %>
+
+  <% if policy(@album_copy).destroy? %>
+    <%= link_to 'Delete', @album_copy, method: :delete %>
+  <% end %>
 </div>

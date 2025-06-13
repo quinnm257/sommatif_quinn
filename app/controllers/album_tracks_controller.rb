@@ -3,25 +3,36 @@ class AlbumTracksController < ApplicationController
 
   # GET /album_tracks or /album_tracks.json
   def index
-    @album_tracks = AlbumTrack.all
+    if params[:album_id].present?
+      @album = Album.find_by(id: params[:album_id])
+      @album_tracks = AlbumTrack.where(album_id: params[:album_id])
+    else
+      @album_tracks = AlbumTrack.all
+    end
   end
 
   # GET /album_tracks/1 or /album_tracks/1.json
   def show
+    authorize @album_track
   end
 
   # GET /album_tracks/new
   def new
     @album_track = AlbumTrack.new
+    @album = Album.all
+    authorize @album_track
   end
 
   # GET /album_tracks/1/edit
   def edit
+    @album = Album.all
+    authorize @album_track
   end
 
   # POST /album_tracks or /album_tracks.json
   def create
     @album_track = AlbumTrack.new(album_track_params)
+    authorize @album_track
 
     respond_to do |format|
       if @album_track.save
@@ -36,6 +47,7 @@ class AlbumTracksController < ApplicationController
 
   # PATCH/PUT /album_tracks/1 or /album_tracks/1.json
   def update
+    authorize @album_track
     respond_to do |format|
       if @album_track.update(album_track_params)
         format.html { redirect_to @album_track, notice: "Album track was successfully updated." }
@@ -49,6 +61,7 @@ class AlbumTracksController < ApplicationController
 
   # DELETE /album_tracks/1 or /album_tracks/1.json
   def destroy
+    authorize @album_track
     @album_track.destroy!
 
     respond_to do |format|

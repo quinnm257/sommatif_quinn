@@ -3,8 +3,12 @@
 <%= render @album_track %>
 
 <div>
-  <%= link_to "Edit this album track", edit_album_track_path(@album_track) %> |
   <%= link_to "Back to album tracks", album_tracks_path %>
+  <% if policy(@album_track).update? %>
+    <%= link_to 'Edit', edit_album_track_path(@album_track) %>
+  <% end %>
 
-  <%= button_to "Destroy this album track", @album_track, method: :delete %>
+  <% if policy(@album_track).destroy? %>
+    <%= link_to 'Delete', @album_track, method: :delete %>
+  <% end %>
 </div>

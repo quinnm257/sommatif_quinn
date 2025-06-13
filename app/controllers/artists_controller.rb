@@ -13,14 +13,17 @@ class ArtistsController < ApplicationController
   # GET /artists/new
   def new
     @artist = Artist.new
+    authorize @artist
   end
 
   # GET /artists/1/edit
   def edit
+    authorize @artist
   end
 
   # POST /artists or /artists.json
   def create
+    authorize @artist
     @artist = Artist.new(artist_params)
 
     respond_to do |format|
@@ -36,6 +39,7 @@ class ArtistsController < ApplicationController
 
   # PATCH/PUT /artists/1 or /artists/1.json
   def update
+    authorize @artist
     respond_to do |format|
       if @artist.update(artist_params)
         format.html { redirect_to @artist, notice: "Artist was successfully updated." }
@@ -49,6 +53,7 @@ class ArtistsController < ApplicationController
 
   # DELETE /artists/1 or /artists/1.json
   def destroy
+    authorize @artist
     @artist.destroy!
 
     respond_to do |format|

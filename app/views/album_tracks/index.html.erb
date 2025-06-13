@@ -2,15 +2,41 @@
 
 <% content_for :title, "Album tracks" %>
 
-<h1>Album tracks</h1>
 
-<div id="album_tracks">
-  <% @album_tracks.each do |album_track| %>
-    <%= render album_track %>
-    <p>
-      <%= link_to "Show this album track", album_track %>
-    </p>
+<% if params[:album_id].present? %>
+  <h1><%= @album.title %></h1>
+  <h3> by <%= @album.artist.name %></h3>
+
+  <div>
+    <% @album_tracks.each do |track| %>
+      <div>
+        <%= track.track_name %> 
+        <% if policy(track).show? %>
+          <%= link_to 'Show', album_track_path(track) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <h1>All Album Tracks</h1>
+
+  <% grouped_tracks = @album_tracks.group_by(&:album) %>
+
+  <% grouped_tracks.each do |album, tracks| %>
+    <div>
+      <h1><%= album.title %></h1>
+      <h3> by <%= album.artist.name %></h3>
+
+      <ul>
+        <% tracks.each do |track| %>
+          <li><%= track.track_name %></li> 
+          <% if policy(track).show? %>
+          <%= link_to 'Show', album_track_path(track) %>
+        <% end %>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-</div>
+<% end %>
 
 <%= link_to "New album track", new_album_track_path %>
