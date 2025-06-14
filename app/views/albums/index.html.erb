@@ -2,17 +2,21 @@
 
 <% content_for :title, "Albums" %>
 
-<h1>Albums</h1>
 
+
+<h1>Albums</h1>
+<%= will_paginate @albums %>
 <div id="albums">
   <% @albums.each do |album| %>
     <%= render album %>
     <p>
       <%= link_to "Show this album", album, class: "header" %>
       <%= link_to "See tracks on this album", album_tracks_path(album_id: album.id), class: "header" %>
-
+      <%= link_to "See copies of this album", album_copies_path(album_id: album.id), class: "header" %>
     </p>
   <% end %>
 </div>
 
 <%= link_to "New album", new_album_path %>
+
+<%= will_paginate @albums %>

@@ -3,8 +3,18 @@ class AlbumsController < ApplicationController
 
   # GET /albums or /albums.json
   def index
-    @albums = Album.all
+    if params[:album_id].present?
+      @albums = Album.where(id: params[:album_id]).paginate(page: params[:page], per_page: 10)
+    elsif params[:artist_id].present?
+      @albums = Album.where(artist_id: params[:artist_id]).paginate(page: params[:page], per_page: 10)
+    elsif params[:genre_id].present?
+      @albums = Album.where(genre_id: params[:genre_id]).paginate(page: params[:page], per_page: 10)
+    else
+      @albums = Album.paginate(page: params[:page], per_page: 10)
+    end
   end
+
+ 
 
   # GET /albums/1 or /albums/1.json
   def show

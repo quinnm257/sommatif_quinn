@@ -11,6 +11,8 @@ class AlbumTracksController < ApplicationController
     end
   end
 
+  
+
   # GET /album_tracks/1 or /album_tracks/1.json
   def show
     authorize @album_track

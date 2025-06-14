@@ -2,7 +2,7 @@ class GearsController < ApplicationController
   before_action :set_gear, only: [:show, :edit, :update, :destroy]
 
   def index
-    @gears = Gear.all
+    @gears = Gear.paginate(page: params[:page], per_page: 20)
   end
 
   def show
@@ -38,9 +38,13 @@ class GearsController < ApplicationController
 
   def destroy
     authorize @gear
-    @gear.destroy
-    redirect_to gears_url, notice: 'Gear was successfully destroyed.'
+    @gear.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to genres_path, status: :see_other, notice: "Gear was successfully destroyed." }
+      format.json { head :no_content }
   end
+end
 
   private
 

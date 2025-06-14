@@ -3,14 +3,15 @@
 <% content_for :title, "Genres" %>
 
 <h1>Genres</h1>
-
+<%= will_paginate @genres %>
 <div id="genres">
   <% @genres.each do |genre| %>
     <%= render genre %>
     <p>
-      <%= link_to "Show this genre", genre %>
-    </p>
+      <%= link_to "Show this genre", genre, class: "header" %>
+      <%= link_to "Discover this genre", albums_path(genre_id: genre.id), class: "header" %>
   <% end %>
 </div>
 
 <%= link_to "New genre", new_genre_path %>
+<%= will_paginate @genres %>

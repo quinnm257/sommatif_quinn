@@ -3,20 +3,24 @@ class OrderAlbumsController < ApplicationController
 
   # GET /order_albums or /order_albums.json
   def index
-    @order_albums = OrderAlbum.all
+    @order_albums = OrderAlbum.paginate(page: params[:page], per_page: 20)
+    authorize OrderAlbum
   end
 
   # GET /order_albums/1 or /order_albums/1.json
   def show
+    authorize OrderAlbum
   end
 
   # GET /order_albums/new
   def new
     @order_album = OrderAlbum.new
+    @album_copy = AlbumCopy.all
   end
 
   # GET /order_albums/1/edit
   def edit
+    @album_copy = AlbumCopy.all
   end
 
   # POST /order_albums or /order_albums.json

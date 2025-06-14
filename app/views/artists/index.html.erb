@@ -4,13 +4,18 @@
 
 <h1>Artists</h1>
 
+<%= will_paginate @artists %>
+
 <div id="artists">
   <% @artists.each do |artist| %>
     <%= render artist %>
     <p>
-      <%= link_to "Show this artist", artist %>
+      <%= link_to "Show this artist", artist, class: "header" %>
+      <%= link_to "See albums by this artist", albums_path(artist_id: artist.id), class: "header" %>
     </p>
   <% end %>
 </div>
 
 <%= link_to "New artist", new_artist_path %>
+
+<%= will_paginate @artists %>

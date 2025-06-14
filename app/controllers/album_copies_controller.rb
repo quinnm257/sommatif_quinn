@@ -3,7 +3,12 @@ class AlbumCopiesController < ApplicationController
 
   # GET /album_copies or /album_copies.json
   def index
-    @album_copies = AlbumCopy.all
+    if params[:album_id].present?
+      @album = Album.find_by(id: params[:album_id])
+      @album_copies = @album.album_copies.paginate(page: params[:page], per_page: 10)
+    else
+      @album_copies = AlbumCopy.paginate(page: params[:page], per_page: 20)
+    end
   end
 
   # GET /album_copies/1 or /album_copies/1.json

@@ -2,7 +2,8 @@
 
 <% content_for :title, "Gear" %>
 
-<h1>Gears</h1>
+<h1>Music Gear</h1>
+<%= will_paginate @gears %>
 
 <div id="gears">
   <% @gears.each do |gear| %>
@@ -14,3 +15,4 @@
 </div>
 
 <%= link_to "New gear", new_gear_path %>
+<%= will_paginate @gears %>

@@ -36,23 +36,30 @@
     <body>Welcome Home, <%= current_user.email %></body>
     <header>
       <nav>
-    <%= link_to 'Sign out', destroy_user_session_path, class: "header", data: { turbo_method: :delete } %>
-  <% else %>
-    <%= link_to 'Sign in', new_user_session_path, class: "header" %>
+      <%= link_to 'Sign out', destroy_user_session_path, class: "header", data: { turbo_method: :delete } %>
+      <% else %>
+      <%= link_to 'Sign in', new_user_session_path, class: "header" %>
   <% end %>
-
-  <% unless controller.controller_name == "home" && action_name == "index" %>
-    
-      
         <%= link_to "Home", root_path, class: "header" %>
-      <%= link_to "Inventory", album_copies_path, class: "header" %>
+        <%= link_to "Inventory", album_copies_path, class: "header" %>
           <%= link_to "Albums", albums_path, class: "header"%>
           <%= link_to "Artists", artists_path, class: "header" %>
           <%= link_to "Genres", genres_path, class: "header" %>
           <%= link_to "Gear", gears_path, class: "header" %>
+
+          <% if policy(Order).index? %>
+            <%= link_to "Orders", orders_path, class: "header" %>
+          <% end %>
+
+        <% if policy(OrderAlbum).index? %>
+          <%= link_to "Album Orders", order_albums_path, class: "header" %>
+        <% end %>
+
+        <% if policy(Customer).index? %>
+          <%= link_to "Customers", customers_path, class: "header" %> <!-- fixed path -->
+        <% end %>
       </nav>
     </header>
-  <% end %>
 
   <body>
     <%= yield %>

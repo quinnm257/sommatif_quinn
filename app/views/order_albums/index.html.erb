@@ -3,7 +3,7 @@
 <% content_for :title, "Order albums" %>
 
 <h1>Order albums</h1>
-
+<%= will_paginate @order_albums %>
 <div id="order_albums">
   <% @order_albums.each do |order_album| %>
     <%= render order_album %>
@@ -14,3 +14,4 @@
 </div>
 
 <%= link_to "New order album", new_order_album_path %>
+<%= will_paginate @order_albums %>

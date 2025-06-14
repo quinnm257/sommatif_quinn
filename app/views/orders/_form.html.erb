@@ -13,8 +13,11 @@
 
   <div>
     <%= form.label :customer_id, style: "display: block" %>
-    <%= form.text_field :customer_id %>
-  </div>
+    <%= form.collection_select :customer_id,
+                  @customer,
+                  :id,
+                  :name,
+                  prompt: "Select a customer" %>  </div>
 
   <div>
     <%= form.label :order_date, style: "display: block" %>

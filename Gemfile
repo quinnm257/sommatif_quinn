@@ -24,6 +24,8 @@ gem "faker"
 gem "country_select"
 gem "dartsass-rails"
 gem "pundit"
+gem 'will_paginate', '~> 3.3'
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]

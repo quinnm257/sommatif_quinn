@@ -10,13 +10,27 @@ namespace :seed do
       genre_names << name
       Genre.create!(
         name: name,
-        description: Faker::Lorem.sentence(word_count: 10)
+        
       )
     end
   end
 
+  task :populategear => :environment do
+    items = %w[Turntable Speakers CDPlayer Stereo]
+
+    10.times do
+      Gear.create!(
+        item: items.sample,
+        description: Faker::Lorem.sentence(word_count: 10),
+        price: rand(50.0..300.0).round(2)
+      )
+    end
+  end
 
   task :populate => :environment do 
+
+    genres = Genre.all.to_a
+
 
     artists = 10.times.map do
       Artist.create!(
@@ -35,7 +49,6 @@ namespace :seed do
       Album.create!(
         title: Faker::Music.unique.album,
         release_year: release_year,
-        release_date: Faker::Date.between(from: Date.new(release_year), to: Date.new(release_year,12,31)),
         artist: artist,
         genre: genres.sample
       )
@@ -45,7 +58,7 @@ namespace :seed do
     albums.each do |album|
       track_names = []
       rand(5..12).times do |i|
-        track_name = Faker::Music.unique::RockBand.song
+        track_name = Faker::Music::RockBand.song
         track_name = Faker::Music::RockBand.song if track_names.include?(track_name)
         track_names << track_name
 
@@ -83,12 +96,12 @@ namespace :seed do
     customers.each do |customer|
       rand(1..3).times do
         selected_album_copies = album_copies.sample(rand(1..3))
-        total_price = selected_album_copies.sum(&:price)
+        Total_price = selected_album_copies.sum(&:price)
 
         order = Order.create!(
           customer: customer,
           order_date: Faker::Date.backward(days: 365),
-          total_price: total_price
+          Total_price: Total_price
         )
 
         selected_album_copies.each do |copy|
